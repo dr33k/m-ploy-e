@@ -24,6 +24,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+bootRun{
+	sourceResources sourceSets.main
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

@@ -1,0 +1,26 @@
+<div th:fragment="content">
+    <div class="container">
+        <div class="row justify-content-between mb-4">
+            <h2 class="col-9"> Employee List </h2>
+            <a href="create" th:href="@{/employees/create}" type="button" class="col-3 btn btn-primary">Add Employee</a>
+        </div>
+
+        <table class="table table-bordered table-striped" border="1">
+            <thead>
+            <tr>
+                <th>Names</th>
+                <th>Email</th>
+                <th>Department</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee:${employees}">
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.email}"></td>
+                <td th:text="${employee.department}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
