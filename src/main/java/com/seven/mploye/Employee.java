@@ -1,7 +1,8 @@
 package com.seven.mploye;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "employees")
@@ -17,7 +18,10 @@ public class Employee {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     public long id;
+    @NotBlank(message = "Enter a valid name")
     public String name;
+    @Email(message = "Enter a valid email")
+    @NotBlank(message = "Enter a valid email")
     public String email;
     public String department;
 
