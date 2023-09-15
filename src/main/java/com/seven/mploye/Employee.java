@@ -17,7 +17,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public long id;
+    public Long id;
     @NotBlank(message = "Enter a valid name")
     public String name;
     @Email(message = "Enter a valid email")

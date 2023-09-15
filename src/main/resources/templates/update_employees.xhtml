@@ -1,8 +1,9 @@
 <div th:fragment="content">
     <div class="container">
         <div class="row justify-content-center">
-            <h2 class="display-6 col-10 col-sm-6 align-middle">Add Employee</h2>
+            <h2 class="display-6 col-10 col-sm-6 align-middle">Update Employee</h2>
             <form class="col-10 col-sm-6 border p-4" action="#" th:action="@{/employees/save}" th:object="${employee}" method="POST">
+                <input type="hidden" th:field="*{id}"/>
                 <div class="mb-4">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" th:field="*{name}"/>
@@ -16,14 +17,14 @@
                 <div class="mb-4">
                     <label for="department" class="form-label">Department</label>
                     <select class="form-select" th:field="*{department}" th:errorclass="text-danger">
-                            <option class="form-option" th:value="Electronics" th:text="Electronics"></option>
-                            <option class="form-option" th:value="Chemistry" th:text="Chemistry"></option>
-                            <option class="form-option" th:value="Mathematics" th:text="Mathematics"></option>
+                        <option class="form-option" th:value="Electronics" th:text="Electronics"></option>
+                        <option class="form-option" th:value="Chemistry" th:text="Chemistry"></option>
+                        <option class="form-option" th:value="Mathematics" th:text="Mathematics"></option>
                     </select>
                 </div>
                 <div class="row justify-content-between">
                     <a href="/employees/list" type="button" class="col-4 btn btn-outline-secondary" th:href="@{/employees/list}">Back To List</a>
-                    <button type="submit" class="col-4 btn btn-primary">Create</button>
+                    <button type="submit" class="col-4 btn btn-primary">Update</button>
                 </div>
             </form>
         </div>
