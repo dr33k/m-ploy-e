@@ -1,1 +1,7 @@
-$(document).ready(function(){$("#employeeTable").DataTable();})
+$(document).ready(function(){$("#employeeTable").DataTable(
+{'aoColumnDefs':[{
+'bSortable':false,
+aTargets:[-1]
+}]
+}
+);})
