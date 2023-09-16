@@ -3,7 +3,6 @@ package com.seven.mploye.controllers;
 import com.seven.mploye.Employee;
 import com.seven.mploye.EmployeeRepository;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +25,21 @@ public class EmployeeController {
         mav.addObject("employees", employeeRepository.findAll());
         return mav;
     }
-    @GetMapping("create")
-    public ModelAndView createEmployeeView(){
+
+    @GetMapping("view")
+    public ModelAndView getView(@RequestParam("id") Long id, @RequestParam("template") String template){
+        if(template == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
         ModelAndView mav = new ModelAndView("parent");
-        mav.addObject("fragment", "create_employees");
-        mav.addObject("employee", new Employee());
+        if(template.equals("create")){
+            mav.addObject("fragment", "create_employees");
+            mav.addObject("employee", new Employee());
+            return mav;
+        }
+        mav.addObject("fragment", String.format("%s_employees",template));
+
+        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        mav.addObject("employee", employee);
         return mav;
     }
 
@@ -43,13 +52,10 @@ public class EmployeeController {
         employeeRepository.save(employee);
         return "redirect:/employees/list";
     }
-    @GetMapping("update")
-    public ModelAndView updateEmployeeView(@RequestParam("id") Long id){
-        ModelAndView mav = new ModelAndView("parent");
-        mav.addObject("fragment", "update_employees");
 
-        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        mav.addObject("employee", employee);
-        return mav;
+    @PostMapping("delete")
+    public String deleteEmployee(@RequestParam("id") Long id){
+       employeeRepository.deleteById(id);
+       return "redirect:/employees/list";
     }
 }

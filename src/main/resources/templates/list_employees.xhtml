@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row justify-content-between mb-4">
             <h2 class="col-9"> Employee List </h2>
-            <a href="create" th:href="@{/employees/create}" type="button" class="col-3 btn btn-primary">Add Employee</a>
+            <a href="view" th:href="@{/employees/view(id=-1, template='create')}" type="button" class="col-3 btn btn-primary">Add Employee</a>
         </div>
 
-        <table class="table table-bordered table-striped" border="1">
+        <table class="table table-bordered table-striped" border="1" id="employeeTable">
             <thead>
             <tr>
                 <th>Names</th>
@@ -19,9 +19,13 @@
                 <td th:text="${employee.name}"></td>
                 <td th:text="${employee.email}"></td>
                 <td th:text="${employee.department}"></td>
-                <td>
-                    <a href="#" th:href="@{/employees/update(id=${employee.id})}" type="button">
+                <td class="justfy-content-center pr-0">
+                    <a href="#" th:href="@{/employees/view(id=${employee.id}, template='update')}" type="button">
                     <i class="bi bi-pencil"></i>
+                    </a>
+                    &nbsp;
+                    <a href="#" th:href="@{/employees/view(id=${employee.id}, template='delete')}" type="button">
+                        <i class="bi bi-trash"></i>
                     </a>
                 </td>
             </tr>

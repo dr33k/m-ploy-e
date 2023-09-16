@@ -1,29 +1,30 @@
 <div th:fragment="content">
     <div class="container">
         <div class="row justify-content-center">
-            <h2 class="display-6 col-10 col-sm-6 align-middle">Add Employee</h2>
-            <form class="col-10 col-sm-6 border p-4" action="#" th:action="@{/employees/save}" th:object="${employee}" method="POST">
+            <h2 class="display-6 col-10 col-sm-6 align-middle">Delete Employee</h2>
+            <form class="col-10 col-sm-6 border p-4" action="#" th:action="@{/employees/delete}" th:object="${employee}" method="POST">
+                <input type="hidden" th:field="*{id}"/>
                 <div class="mb-4">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" th:field="*{name}"/>
+                    <input disabled type="text" class="form-control" th:field="*{name}"/>
                     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="text-danger"></p>
                 </div>
                 <div class="mb-4">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" th:field="*{email}"/>
+                    <input disabled type="email" class="form-control" th:field="*{email}"/>
                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="text-danger"></p>
                 </div>
                 <div class="mb-4">
                     <label for="department" class="form-label">Department</label>
-                    <select class="form-select" th:field="*{department}" th:errorclass="text-danger">
-                            <option class="form-option" th:value="Electronics" th:text="Electronics"></option>
-                            <option class="form-option" th:value="Chemistry" th:text="Chemistry"></option>
-                            <option class="form-option" th:value="Mathematics" th:text="Mathematics"></option>
+                    <select disabled class="form-select" th:field="*{department}" th:errorclass="text-danger">
+                        <option class="form-option" th:value="Electronics" th:text="Electronics"></option>
+                        <option class="form-option" th:value="Chemistry" th:text="Chemistry"></option>
+                        <option class="form-option" th:value="Mathematics" th:text="Mathematics"></option>
                     </select>
                 </div>
                 <div class="row justify-content-between">
                     <a href="/employees/list" type="button" class="col-4 btn btn-outline-secondary" th:href="@{/employees/list}">Back To List</a>
-                    <button type="submit" class="col-4 btn btn-success">Create</button>
+                    <button type="submit" class="col-4 btn btn-danger">Delete</button>
                 </div>
             </form>
         </div>
