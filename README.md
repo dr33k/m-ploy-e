@@ -1,6 +1,6 @@
-### m-ploy-e
+# m-ploy-e
 
-A templated server application using SpringBoot and Thymeleaf for managing basisc employee details
+A templated server application using SpringBoot and Thymeleaf for managing basic employee details
 
 ### Run
 
@@ -14,10 +14,15 @@ or edit the application.properties file to suit your instance
 
 Then run
 
-    .\mvnw spring-boot:run
+    .\gradlew bootRun
 
 In powershell or
 
-    mvnw spring-boot:run 
+    gradlew bootRun
 
   in any other terminal
+
+
+### Visit
+
+http://localhost:8080/employees/list
